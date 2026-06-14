@@ -4,10 +4,10 @@ const baseURL = process.env.NEXT_PUBLIC_URL || "https://Screenopps.com"
 export const metadata = {
   manifest:"/manifest.json",
   title:{
-    default: 'Veeshow || Movie and Entertainment'},
+    default: 'Screenopps || Movie and Entertainment'},
     metadataBase: new URL(`${baseURL}`),
     openGraph: {
-      title: 'Veeshow | Entertainment and Movie Hubspot',
+      title: 'Screenopps | Entertainment and Movie Hubspot',
       description: 'Stream movies, hollywood,  korean series, tv series and anime series for free from Veeshow',
       images:[{url:`${baseURL}/opengraph-image.png`, width:1200, height:630}]
       ,
