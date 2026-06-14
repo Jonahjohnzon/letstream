@@ -139,7 +139,7 @@ const Bodyjs =  ({params}) => {
             </div>
             <div className=' flex sm:flex-row flex-col justify-center items-center cursor-pointer'>
               {airDate < currentDate ?<div onClick={()=>{
-                window.open("https://otieu.com/4/10438662")
+                window.open("https://omg10.com/4/10438662")
                 router.push(`/stream/${type}/${id}/1/1`)
               }}><Button title={"Stream/Download"}/></div>:<div className=' w-40 '><img src='/nota.png'/></div>}
               

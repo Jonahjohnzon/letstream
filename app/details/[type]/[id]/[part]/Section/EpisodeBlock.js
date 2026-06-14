@@ -19,7 +19,7 @@ const EpisodeBlock = ({data,id, Detail}) => {
    <div className=' w-full h-full hover:scale-95 cursor-pointer transition-all duration-500 ease-in-out' onClick={()=>{
       if (airDate < currentDate && airDate )
       {
-      window.open("https://otieu.com/4/10438662")
+      window.open("https://omg10.com/4/10438662")
       router.push(`/stream/tv/${id}/${data.season_number}/${data.episode_number}`)
       }
     }}>

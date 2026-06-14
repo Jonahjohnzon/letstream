@@ -116,12 +116,6 @@ const Stream = ({ id, type, season, eps }) => {
       scrSeries: `https://vidlink.pro/tv/${id}/${season}/${eps}`,
       id: 5,
     },
-    {
-      Name: "SERVER 6",
-      scrMovie: `https://player.autoembed.cc/embed/movie/${id}?server=6`,
-      scrSeries: `https://player.autoembed.cc/embed/tv/${id}/${season}/${eps}?server=6`,
-      id: 6,
-    },
   ];
 
   const currentApi =
@@ -157,7 +151,7 @@ const Stream = ({ id, type, season, eps }) => {
         <div
           className="text-4xl cursor-pointer"
           onClick={() => {
-            window.open("https://otieu.com/4/10438662");
+            window.open("https://omg10.com/4/10438662");
             router.push(`/details/${type}/${id}/${season}`);
           }}
         >
@@ -198,7 +192,7 @@ const Stream = ({ id, type, season, eps }) => {
                       ep === eps ? "bg-gray-700" : ""
                     }`}
                     onClick={() => {
-                      window.open("https://poawooptugroo.com/4/8808782");
+                      window.open("https://omg10.com/4/10438662");
                       router.push(`/stream/tv/${id}/${season}/${ep}`);
                     }}
                   >
