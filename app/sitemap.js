@@ -15,26 +15,26 @@ export default async function sitemap() {
     if (!res?.results || !sec?.results || !tel?.series) throw new Error();
 
     const post = res.results.map((pos) => ({
-      url: `https://Veeshow.com/details/movie/${pos.id}/1`,
+      url: `https://Screenopps.com/details/movie/${pos.id}/1`,
       lastModified: new Date(pos.release_date || Date.now()).toISOString(),
     }));
 
     const post2 = sec.results.map((pos) => ({
-      url: `https://Veeshow.com/details/tv/${pos.id}/1`,
+      url: `https://Screenopps.com/details/tv/${pos.id}/1`,
       lastModified: new Date(pos.first_air_date || Date.now()).toISOString(),
     }));
 
 
 
     return [
-      { url: "https://Veeshow.com", lastModified: new Date().toISOString(), priority: 1 },
+      { url: "https://Screenopps.com", lastModified: new Date().toISOString(), priority: 1 },
       ...post,
       ...post2
     ];
   } catch (error) {
     console.error("Error generating sitemap:", error);
     return [
-      { url: "https://Veeshow.com", lastModified: new Date().toISOString(), priority: 1 },
+      { url: "https://Screenopps.com", lastModified: new Date().toISOString(), priority: 1 },
     ];
   }
 }
