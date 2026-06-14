@@ -1,14 +1,14 @@
 import Body from "./Body";
 
-const baseURL = process.env.NEXT_PUBLIC_URL || "https://screenopps.com"
+const baseURL = process.env.NEXT_PUBLIC_URL || "https://Veeshow.com"
 export const metadata = {
   manifest:"/manifest.json",
   title:{
-    default: 'Screenopps || Movie and Entertainment'},
+    default: 'Veeshow || Movie and Entertainment'},
     metadataBase: new URL(`${baseURL}`),
     openGraph: {
-      title: 'Screenopps | Entertainment and Movie Hubspot',
-      description: 'Stream movies, hollywood,  korean series, tv series and anime series for free from Screenopps',
+      title: 'Veeshow | Entertainment and Movie Hubspot',
+      description: 'Stream movies, hollywood,  korean series, tv series and anime series for free from Veeshow',
       images:[{url:`${baseURL}/opengraph-image.png`, width:1200, height:630}]
       ,
       url:`${baseURL}`,
