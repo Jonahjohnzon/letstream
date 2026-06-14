@@ -1,6 +1,6 @@
 import Body from "./Body";
 
-const baseURL = process.env.NEXT_PUBLIC_URL || "https://Veeshow.com"
+const baseURL = process.env.NEXT_PUBLIC_URL || "https://Screenopps.com"
 export const metadata = {
   manifest:"/manifest.json",
   title:{
