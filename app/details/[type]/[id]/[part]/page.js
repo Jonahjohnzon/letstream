@@ -17,7 +17,7 @@ return{
   title:{
     default: `${title} `},
     openGraph: {
-      title: `Veeshow || ${title} `,
+      title: `Screenopps || ${title} `,
       description: overview,
       images:[{url: image, width:1200, height:630}],
       type:"website"
