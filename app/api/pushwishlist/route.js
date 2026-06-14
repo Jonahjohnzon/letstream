@@ -1,6 +1,7 @@
 "use server";
 import { NextResponse } from "next/server";
 import mongoosedb from "@/app/lib/db";
+require("node:dns/promises").setServers(["1.1.1.1", "8.8.8.8"]);
 import user from "@/app/lib/models/user";
 
 export const PUT = async (req) => {

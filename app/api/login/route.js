@@ -1,5 +1,6 @@
 "use server"
 const JWT = require("jsonwebtoken");
+require("node:dns/promises").setServers(["1.1.1.1", "8.8.8.8"]);
 import { NextResponse } from "next/server";
 import mongoosedb from "@/app/lib/db";
 import user from "@/app/lib/models/user";

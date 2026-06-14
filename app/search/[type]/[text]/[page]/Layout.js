@@ -7,7 +7,6 @@ import Apicore from '../../../../ApiCore';
 import MovieBlock from '../../../../Pages/MovieBlock';
 import Pagination from '@/app/[type]/[genre]/[country]/[date]/[sort]/[page]/Component/Pagination';
 import Button from '@/app/Component/Button';
-import Block from '@/app/series/telenovelas/[page]/Component/Block';
 const Layout = ({type, texts, page}) => {
   const text = decodeURIComponent(texts)
   const api = new Apicore()
@@ -116,10 +115,6 @@ const Layout = ({type, texts, page}) => {
                   <Field type="radio" name="types" value="tv" className="mr-2" />
                   TV Show
                 </label>
-                 {/* <label>
-                  <Field type="radio" name="types" value="telenovela" className="mr-2" />
-                  Telenovela
-                </label> */}
               </div>
   
               <button
@@ -140,11 +135,7 @@ const Layout = ({type, texts, page}) => {
             {list.map((data, i)=>{
               return(
                 <div key={i} className=' mx-2 mb-5'>
-                  {type == "telenovela"?
-                  <Block data={data}/>
-                  :
                   <MovieBlock data={data} passType={type}/>
-                  }
                 </div>
               )
             })}

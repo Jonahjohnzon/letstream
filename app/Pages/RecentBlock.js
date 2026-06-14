@@ -19,14 +19,10 @@ const RecentBlock = ({data, passType = ""}) => {
 style: {transitionDelay: "1s"},
 }}>
     <div  role="img" aria-label="movie image" title="movie image"  className=' rounded-lg cursor-pointer overflow-hidden w-36 sm:w-48 h-60 sm:h-72  group relative ' onClick={()=>{
-      window.open("https://otieu.com/4/10438662")
-      if(data.media_type != "telenovela")
-      {
+      window.open("https://poawooptugroo.com/4/8808782")
+
       router.push(`/stream/${type}/${data?.id}/${season}/${episode}`)}
-      else{
-      router.push(`/telestream?link=${data?.url}`)
-      }
-      } } >
+       } >
       <img onError={addDefaultImg} className=' w-full h-full object-cover object-center absolute z-10 ' src={data?.url?`${data.poster_path}`:`${Api}${data.poster_path}`} loading='lazy' alt={data.name || data.original_name || data.title}/>
         <div className=' flex justify-center items-end bg-black w-full h-full absolute z-20 bg-opacity-0 group-hover:bg-opacity-80 transition-all duration-300 ease-in-out'>
           <div className=' px-2  font-bold w-full opacity-0   group-hover:opacity-100 transition-all text-center flex flex-col items-center absolute -bottom-10 group-hover:bottom-10 duration-300 ease-in-out'>

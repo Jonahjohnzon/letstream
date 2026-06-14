@@ -15,8 +15,6 @@ const Footer = () => {
             </div>
             <div>
                 <h3 className=' font-semibold text-lg sm:text-2xl mb-2'>Socials</h3>
-                {/* <p className=' font-medium sm:text-base text-sm cursor-pointer hover:font-semibold' onClick={()=>{
-                                router.push(`https://t.me/+UFnIjwbktFk3MWY0`)}}>Novela Community</p> */}
             </div>
             <div>
                 <h3 className=' font-semibold text-lg sm:text-2xl mb-2'>Resource</h3>

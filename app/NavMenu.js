@@ -7,7 +7,6 @@ import { AnimatePresence } from 'framer-motion';
 import { motion } from 'framer-motion';
 import { useSnapshot } from 'valtio';
 import { state } from './store';
-import { deleteCookies } from './getCookie';
 import { useRouter } from 'nextjs-toploader/app';
 import { FaDiscord } from "react-icons/fa";
 

@@ -7,7 +7,6 @@ import { AnimatePresence } from 'framer-motion';
 import { motion } from 'framer-motion';
 import { useSnapshot } from 'valtio';
 import { state } from './store';
-import { deleteCookies } from './getCookie';
 import { useRouter } from 'nextjs-toploader/app';
 import { FaDiscord } from "react-icons/fa";
 import { FaFilm } from "react-icons/fa6";
@@ -86,10 +85,6 @@ const Logout = async () => {
                  state.showmenu = false
                 router.push(`/tv/16/JP/${previousYear}/1/1`)
             }}><span className=' mr-2'><GiReactor/></span><p>Animes</p></h1>
-             {/* <h1 className=' md:hidden cursor-pointer hover:scale-90 transition-all mb-4 duration-300 ease-in-out text-lg font-semibold flex items-center' onClick={()=>{
-                 state.showmenu = false
-                router.push(`/series/telenovelas/1`)
-            }}><span className=' mr-2'><MdLiveTv /></span><p>Telenovela</p></h1> */}
             {log &&<h1 className=' cursor-pointer hover:scale-90 transition-all mb-4 duration-300 ease-in-out text-lg font-semibold flex items-center' onClick={()=>{
               state.showmenu = false
               router.push(`/history/1`)}}><span className=' mr-2'><MdLocalMovies/></span><p>Recent Watch</p></h1>}

@@ -3,7 +3,6 @@ import { motion, AnimatePresence } from 'framer-motion';
 import Button from '../Component/Button';
 import InfoButton from '../Component/InfoButton';
 import { useRouter } from 'nextjs-toploader/app';
-
 import { truncateText } from '../Text';
 
 const Top = ({ BackgroundList }) => {

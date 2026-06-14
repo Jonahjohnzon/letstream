@@ -1,5 +1,6 @@
 "use server"
 import { NextResponse } from "next/server";
+require("node:dns/promises").setServers(["1.1.1.1", "8.8.8.8"]);
 import mongoosedb from "@/app/lib/db";
 import user from "@/app/lib/models/user";
 
