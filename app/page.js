@@ -48,12 +48,6 @@ const ROWS = [
     type: 'movie',
     endpoint: '/3/movie/now_playing?language=en-US&page=1',
   },
-  {
-    key: 'popularMovies',
-    title: 'Popular Movies',
-    type: 'movie',
-    endpoint: '/3/movie/popular?language=en-US&page=1',
-  },
   // Trailers isn't a normal poster row — it renders through <Upcoming/>
   // instead of <ContentRow/> — but it's still fetched the same way, so it
   // stays in this list to get the same parallel-fetch + fallback handling.
@@ -63,12 +57,6 @@ const ROWS = [
     type: 'movie',
     endpoint: '/3/movie/upcoming?language=en-US&page=1',
     render: 'trailer',
-  },
-  {
-    key: 'airingToday',
-    title: 'Airing Today',
-    type: 'tv',
-    endpoint: '/3/tv/airing_today?language=en-US&page=1',
   },
   {
     key: 'anime',
@@ -81,12 +69,6 @@ const ROWS = [
     title: 'Action Movies',
     type: 'movie',
     endpoint: '/3/discover/movie?include_adult=false&language=en-US&page=1&sort_by=popularity.desc&with_genres=28',
-  },
-  {
-    key: 'documentaries',
-    title: 'Documentaries',
-    type: 'movie',
-    endpoint: '/3/discover/movie?include_adult=false&language=en-US&page=1&sort_by=popularity.desc&with_genres=99',
   },
   {
     key: 'topRated',
