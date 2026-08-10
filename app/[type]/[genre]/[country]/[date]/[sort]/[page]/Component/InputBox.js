@@ -1,163 +1,168 @@
 "use client"
-import React from 'react'
-import { movieGenre, tvGenre } from '../Genres';
+import React, { useEffect, useMemo, useRef, useState } from 'react'
 import { useRouter } from 'nextjs-toploader/app';
+import { IoChevronDown } from "react-icons/io5";
+import { movieGenre, tvGenre, countries, sortOptions, ratingOptions } from '../Genres';
 
+/**
+ * One reusable dropdown instead of the four/five near-identical
+ * open/close/list blocks this used to be built from. `options` is always
+ * `[{ id, label }]` — callers translate their own data shape into that.
+ */
+const Dropdown = ({ id, label, options, activeId, onSelect, isOpen, onToggle, widthClass, disabled, disabledLabel }) => {
+  if (disabled) {
+    return (
+      <div
+        className={`${widthClass} rounded-lg border-[1px] border-white border-opacity-20 px-2 py-2 text-gray-500 bg-black/40 cursor-not-allowed whitespace-nowrap overflow-hidden`}
+        title={disabledLabel}
+      >
+        {disabledLabel}
+      </div>
+    );
+  }
 
-const InputBox = ({params}) => {
-  const [dropdownOpen, setDropdownOpen] = React.useState(false);
-  const [sortDropdownOpen, setSortDropdownOpen] = React.useState(false);
-  const [genreDropdownOpen, setGenreDropdownOpen] = React.useState(false);
+  const activeLabel = options.find((o) => String(o.id) === String(activeId))?.label ?? label;
 
-  const router = useRouter()
-  const currentYear = new Date().getFullYear();
-  const country = params.country
-  const years = []; // Array to hold years
-  const type = params.type
-  const genre = params.genre
-  const date = params.date
-  const sort = params.sort
-  for (let year = currentYear; year >= 1940; year--) {
-  years.push(year);
-}
   return (
-    <div className={` flex  items-center ${genre == '16'?' w-full sm:w-[60%] md:w-[40%]':'  w-full sm:w-[80%] md:w-[50%]'} justify-between`}>
-      <div >
-      <div className="relative">
-  <div 
-    className="cursor-pointer outline-none bg-black w-24 sm:w-32 lg:w-52 rounded-lg border-white border-[1px] border-opacity-40 px-2 py-2 text-white"
-    onClick={() => setDropdownOpen(!dropdownOpen)}
-  >
-    {params.date || "Select Year"}
-  </div>
-
-  {dropdownOpen && (
-    <div className="absolute z-30 bg-black w-24 sm:w-32 lg:w-52 rounded-lg border-white border-[1px] border-opacity-40 mt-1 max-h-60 overflow-y-auto scrollbar-track-black scrollbar-thin scrollbar-thumb-slate-400 ">
-      {years.map((year) => (
-        <div 
-          key={year} 
-          className="px-2 py-2 cursor-pointer hover:bg-slate-600"
-          onClick={() => {
-            setDropdownOpen(false);
-            router.push(`/${type}/${genre}/${country}/${year}/${sort}/1`);
-          }}
-        >
-          {year}
-        </div>
-      ))}
-    </div>
-  )}
-</div>
-
-      </div>
-      <div>
-      <div className="relative">
-  <div
-    className="cursor-pointer overflow-hidden whitespace-nowrap outline-none bg-black w-24 sm:w-32 lg:w-52 rounded-lg border-white border-[1px] border-opacity-40 px-2 py-2 text-white"
-    onClick={() => setSortDropdownOpen(!sortDropdownOpen)}
-  >
-    {params.sort == "1"
-      ? "Most Popular"
-      : params.sort == "2"
-      ? "Most Rated"
-      : params.sort == "3"
-      ? "Most Recent"
-      : "Sort by"}
-  </div>
-
-  {sortDropdownOpen && (
-    <div className="absolute overflow-x-hidden bg-black w-24 sm:w-32 lg:w-52 rounded-lg border-white border-[1px] border-opacity-40 mt-1 z-30">
-      <div
-        className="px-2 py-2 whitespace-nowrap cursor-pointer hover:bg-slate-600"
-        onClick={() => {
-          setSortDropdownOpen(false);
-          router.push(`/${type}/${genre}/${country}/${date}/1/1`);
-        }}
+    <div className="relative">
+      <button
+        type="button"
+        aria-haspopup="listbox"
+        aria-expanded={isOpen}
+        onClick={() => onToggle(id)}
+        className={`${widthClass} flex items-center justify-between gap-1 cursor-pointer outline-none bg-black rounded-lg border-white border-[1px] border-opacity-40 px-2 py-2 text-white whitespace-nowrap overflow-hidden hover:border-opacity-70 transition-colors`}
       >
-        Most Popular
-      </div>
-      <div
-        className="px-2 py-2 whitespace-nowrap cursor-pointer hover:bg-slate-600"
-        onClick={() => {
-          setSortDropdownOpen(false);
-          router.push(`/${type}/${genre}/${country}/${date}/2/1`);
-        }}
-      >
-        Most Rated
-      </div>
-      <div
-        className="px-2 py-2 whitespace-nowrap cursor-pointer hover:bg-slate-600"
-        onClick={() => {
-          setSortDropdownOpen(false);
-          router.push(`/${type}/${genre}/${country}/${date}/3/1`);
-        }}
-      >
-        Most Recent
-      </div>
-    </div>
-  )}
-</div>
+        <span className="truncate">{activeLabel}</span>
+        <IoChevronDown className={`shrink-0 transition-transform ${isOpen ? 'rotate-180' : ''}`} size={14} />
+      </button>
 
-      </div>
-      <div>
-        {type == "movie"?
-        <div>
-<div className="relative">
-  <div
-    className="cursor-pointer whitespace-nowrap overflow-hidden outline-none bg-black w-20 sm:w-32 lg:w-52 rounded-lg border-white border-[1px] border-opacity-40 px-2 py-2 text-white"
-    onClick={() => setGenreDropdownOpen(!genreDropdownOpen)}
-  >
-    {genre ? movieGenre.find((g) => g.id == genre)?.name || "Genre" : "Genre"}
-  </div>
-
-  {genreDropdownOpen && (
-    <div className="absolute overflow-x-hidden  bg-black w-20 sm:w-32 lg:w-52 rounded-lg border-white border-[1px] border-opacity-40 mt-1 z-30 max-h-60 overflow-y-auto scrollbar-track-black scrollbar-thin scrollbar-thumb-slate-400">
-      {movieGenre.map((item) => (
+      {isOpen && (
         <div
-          key={item.id}
-          className="px-2 py-2 whitespace-nowrap cursor-pointer hover:bg-slate-600"
-          onClick={() => {
-            setGenreDropdownOpen(false);
-            router.push(`/${type}/${item.id}/${country}/${date}/${sort}/1`);
-          }}
+          role="listbox"
+          className={`absolute z-30 ${widthClass} bg-black rounded-lg border-white border-[1px] border-opacity-40 mt-1 max-h-60 overflow-y-auto scrollbar-track-black scrollbar-thin scrollbar-thumb-slate-400`}
         >
-          {item.name}
+          {options.map((opt) => (
+            <button
+              type="button"
+              key={opt.id}
+              role="option"
+              aria-selected={String(opt.id) === String(activeId)}
+              className={`w-full text-left px-2 py-2 whitespace-nowrap cursor-pointer hover:bg-slate-600 ${String(opt.id) === String(activeId) ? 'bg-slate-800 font-semibold' : ''}`}
+              onClick={() => onSelect(opt.id)}
+            >
+              {opt.label}
+            </button>
+          ))}
         </div>
-      ))}
+      )}
     </div>
-  )}
-</div>
+  );
+};
 
-        </div>:
-        <div>
-            {genre != '16'&&<div className="relative">
-  <div
-    className="cursor-pointer outline-none bg-black w-20 sm:w-32 lg:w-52 rounded-lg border-white border-[1px] border-opacity-40 px-2 py-2 text-white"
-    onClick={() => setGenreDropdownOpen(!genreDropdownOpen)}
-  >
-    {genre ? tvGenre.find((g) => g.id == genre)?.name || "Genre" : "Genre"}
-  </div>
+const InputBox = ({ params, searchParams }) => {
+  const router = useRouter()
+  const containerRef = useRef(null)
+  const [openId, setOpenId] = useState(null)
 
-  {genreDropdownOpen && (
-    <div className="absolute bg-black w-20 overflow-x-hidden sm:w-32 lg:w-52 rounded-lg border-white border-[1px] border-opacity-40 mt-1 z-30 max-h-60 overflow-y-auto scrollbar-track-black scrollbar-thin scrollbar-thumb-slate-400">
-      {tvGenre.map((item) => (
-        <div
-          key={item.id}
-          className="px-2 py-2 whitespace-nowrap cursor-pointer hover:bg-slate-600"
-          onClick={() => {
-            setGenreDropdownOpen(false);
-            router.push(`/${type}/${item.id}/${country}/${date}/${sort}/1`);
-          }}
-        >
-          {item.name}
-        </div>
-      ))}
-    </div>
-  )}
-</div>
-}
-        </div>}
-      </div>
+  const currentYear = new Date().getFullYear();
+  const { type, country, genre, date, sort } = params;
+  const rating = searchParams?.rating ?? '';
+
+  const years = useMemo(() => {
+    const list = [];
+    for (let year = currentYear; year >= 1940; year--) list.push(year);
+    return list;
+  }, [currentYear]);
+
+  const isAnime = genre === '16' && type === 'tv';
+
+  // Close whichever dropdown is open when a click lands outside the whole
+  // filter bar. The original never did this — a dropdown, once opened,
+  // only closed when you picked an option, not when you clicked away.
+  useEffect(() => {
+    const handleClick = (e) => {
+      if (containerRef.current && !containerRef.current.contains(e.target)) {
+        setOpenId(null);
+      }
+    };
+    document.addEventListener('mousedown', handleClick);
+    return () => document.removeEventListener('mousedown', handleClick);
+  }, []);
+
+  const toggle = (id) => setOpenId((prev) => (prev === id ? null : id));
+
+  const goTo = (next) => {
+    setOpenId(null);
+    const path = `/${next.type}/${next.genre}/${next.country}/${next.date}/${next.sort}/1`;
+    const query = next.rating ? `?rating=${next.rating}` : '';
+    router.push(path + query);
+  };
+
+  const genreOptions = (type === 'movie' ? movieGenre : tvGenre).map((g) => ({ id: String(g.id), label: g.name }));
+  const countryOptions = countries.map((c) => ({ id: c.code, label: c.name }));
+  const sortDropdownOptions = sortOptions.map((s) => ({ id: s.id, label: s.label }));
+  const ratingDropdownOptions = ratingOptions.map((r) => ({ id: r.value, label: r.label }));
+
+  return (
+    <div ref={containerRef} className="flex flex-wrap items-center gap-3">
+      <Dropdown
+        id="year"
+        label="Select Year"
+        options={years.map((y) => ({ id: String(y), label: String(y) }))}
+        activeId={date}
+        isOpen={openId === 'year'}
+        onToggle={toggle}
+        widthClass="w-24 sm:w-32 lg:w-40"
+        onSelect={(year) => goTo({ type, genre, country, date: year, sort, rating })}
+      />
+
+      <Dropdown
+        id="sort"
+        label="Sort by"
+        options={sortDropdownOptions}
+        activeId={sort}
+        isOpen={openId === 'sort'}
+        onToggle={toggle}
+        widthClass="w-32 sm:w-40 lg:w-48"
+        onSelect={(sortId) => goTo({ type, genre, country, date, sort: sortId, rating })}
+      />
+
+      {!isAnime && (
+        <Dropdown
+          id="genre"
+          label="Genre"
+          options={genreOptions}
+          activeId={genre}
+          isOpen={openId === 'genre'}
+          onToggle={toggle}
+          widthClass="w-24 sm:w-36 lg:w-44"
+          onSelect={(genreId) => goTo({ type, genre: genreId, country, date, sort, rating })}
+        />
+      )}
+
+      <Dropdown
+        id="country"
+        label="Country"
+        options={countryOptions}
+        activeId={country}
+        isOpen={openId === 'country'}
+        onToggle={toggle}
+        widthClass="w-24 sm:w-36 lg:w-44"
+        disabled={isAnime}
+        disabledLabel="Japan (Anime)"
+        onSelect={(code) => goTo({ type, genre, country: code, date, sort, rating })}
+      />
+
+      <Dropdown
+        id="rating"
+        label="Any Rating"
+        options={ratingDropdownOptions}
+        activeId={rating}
+        isOpen={openId === 'rating'}
+        onToggle={toggle}
+        widthClass="w-24 sm:w-32 lg:w-36"
+        onSelect={(value) => goTo({ type, genre, country, date, sort, rating: value })}
+      />
     </div>
   )
 }

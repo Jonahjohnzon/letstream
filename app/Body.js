@@ -3,7 +3,7 @@ import React from 'react'
 import {  Dosis} from "next/font/google";
 import "./globals.css";
 import NextTopLoader from 'nextjs-toploader';
-import Container from './Register/Container';
+import Container from './Auth/Container';
 import { useSnapshot } from 'valtio';
 import { state } from './store';
 import NavMenu from './NavMenu';

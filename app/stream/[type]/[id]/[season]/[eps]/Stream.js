@@ -80,41 +80,29 @@ const Stream = ({ id, type, season, eps }) => {
 
   /* ================= STREAM SERVERS ================= */
   const StreamApi = [
-     {
+    {
       Name: "SERVER",
-      scrMovie: `https://api.screenopps.com/embed/movie/${id}`,
-      scrSeries: `https://api.screenopps.com/embed/tv/${id}/${season}/${eps}`,
+      scrMovie: `https://player.cinezo.live/embed/movie/${id}?autoplay=false&poster=true&chromecast=false&servericon=true&setting=false&pip=true&font=Roboto&fontcolor=6f63ff&fontsize=20&opacity=0.5&primarycolor=e8b86d&secondarycolor=0a0a12&iconcolor=ffffff`,
+      scrSeries: `https://player.cinezo.live/embed/tv/${id}/${season}/${eps}?autoplay=false&poster=true&chromecast=false&servericon=true&setting=false&pip=true&font=Roboto&fontcolor=6f63ff&fontsize=20&opacity=0.5&primarycolor=e8b86d&secondarycolor=0a0a12&iconcolor=ffffff`,
       id: 0,
     },
     {
       Name: "SERVER 1",
-      scrMovie: `https://player.cinezo.live/embed/movie/${id}?autoplay=false&poster=true&chromecast=false&servericon=true&setting=false&pip=true&font=Roboto&fontcolor=6f63ff&fontsize=20&opacity=0.5&primarycolor=e8b86d&secondarycolor=0a0a12&iconcolor=ffffff`,
-      scrSeries: `https://player.cinezo.live/embed/tv/${id}/${season}/${eps}?autoplay=false&poster=true&chromecast=false&servericon=true&setting=false&pip=true&font=Roboto&fontcolor=6f63ff&fontsize=20&opacity=0.5&primarycolor=e8b86d&secondarycolor=0a0a12&iconcolor=ffffff`,
+      scrMovie: `https://vidfast.pro/movie/${id}`,
+      scrSeries: `https://vidfast.pro/tv/${id}/${season}/${eps}`,
       id: 1,
     },
     {
       Name: "SERVER 2",
-      scrMovie: `https://vidfast.pro/movie/${id}`,
-      scrSeries: `https://vidfast.pro/tv/${id}/${season}/${eps}`,
+      scrMovie: `https://vidnest.fun/movie/${id}`,
+      scrSeries: `https://vidnest.fun/tv/${id}/${season}/${eps}`,
       id: 2,
     },
     {
       Name: "SERVER 3",
-      scrMovie: `https://moviesapi.club/movie/${id}`,
-      scrSeries: `https://moviesapi.club/tv/${id}-${season}-${eps}`,
-      id: 3,
-    },
-    {
-      Name: "SERVER 4",
-      scrMovie: `https://vidnest.fun/movie/${id}`,
-      scrSeries: `https://vidnest.fun/tv/${id}/${season}/${eps}`,
-      id: 4,
-    },
-    {
-      Name: "SERVER 5",
       scrMovie: `https://vidlink.pro/movie/${id}`,
       scrSeries: `https://vidlink.pro/tv/${id}/${season}/${eps}`,
-      id: 5,
+      id: 3,
     },
   ];
 
