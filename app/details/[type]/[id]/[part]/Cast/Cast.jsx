@@ -42,7 +42,7 @@ const Cast = ({ cast }) => {
   if (!cast || cast.length === 0) return null
 
   return (
-    <div className="mt-10 w-full flex justify-center">
+    <div className="mb-10 w-full flex justify-center">
       <section className="w-[95%] sm:w-[90%] xl:w-2/3">
         <div className="mb-6"><TitleBar title={"Cast"} /></div>
         <div className="grid grid-cols-3 sm:grid-cols-4 md:grid-cols-6 lg:grid-cols-8 gap-x-4 gap-y-6">
