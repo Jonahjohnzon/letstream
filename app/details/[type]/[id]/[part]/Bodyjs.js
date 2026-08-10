@@ -120,13 +120,15 @@ const Bodyjs = ({ params }) => {
 
           <section className='w-[95%] md:w-[90%] 2xl:w-[60%] flex md:flex-row flex-col items-center justify-between'>
             <div className='mb-5 md:mb-0 w-full min-h-72 lg:w-[40%] flex justify-center md:justify-start lg:justify-center'>
-              <img
-                onError={addDefaultImg}
-                src={`${PosterApi}${Detail?.poster_path}`}
-                alt={Detail?.name || Detail?.title}
-                className='w-40 md:w-60 lg:w-72 shadow-sm shadow-black rounded-md'
-              />
-            </div>
+            <img
+              onError={addDefaultImg}
+              src={`${PosterApi}${Detail?.poster_path}`}
+              alt={Detail?.name || Detail?.title}
+              width={288}
+              height={432}
+              className='w-40 md:w-60 lg:w-72 aspect-[2/3] object-cover shadow-sm shadow-black rounded-md'
+            />
+          </div>
 
             <div className='w-[100%] sm:w-[60%] flex flex-col items-center'>
               <div className='flex items-center gap-3 mb-1'>
