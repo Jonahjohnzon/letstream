@@ -18,7 +18,6 @@ export const fetchTMDB = async (Tmdb_Id, Type, Season, Episode) => {
 
         const data = await mainRes.json();
         const external = await externalRes.json();
-        // tv uses 'name', movie uses 'title'
         const title = data.title || data.name || 'Unknown';
         const poster = data.poster_path
             ? `https://image.tmdb.org/t/p/w500${data.poster_path}`
@@ -29,7 +28,6 @@ export const fetchTMDB = async (Tmdb_Id, Type, Season, Episode) => {
         const overview = data.overview || '';
         const imdb_id = external.imdb_id || null;
 
-        // for tv episodes get episode title and still
         let episode_title = null;
         let episode_still = null;
         if (Type === 'tv' && Season && Episode) {
@@ -51,7 +49,6 @@ export const fetchTMDB = async (Tmdb_Id, Type, Season, Episode) => {
 };
 
 export const GET = async (req) => {
-    
     try {
         const Url = new URL(req.url)
         const Tmdb_Id = Url.searchParams.get('Tmdb_Id')
@@ -59,6 +56,10 @@ export const GET = async (req) => {
         const Season = Url.searchParams.get('Season')
         const Episode = Url.searchParams.get('Episode')
         const Server = Url.searchParams.get('Server')
+        // When the client is retrying against a different server after the
+        // first one came back empty, it already has TMDB metadata from the
+        // first response — no need to hit TMDB again for every retry.
+        const Meta = Url.searchParams.get('Meta') !== 'false'
 
         if (!Tmdb_Id || !Type || !Server) {
             return NextResponse.json({ error: 'Missing required query parameters.' }, { status: 400 })
@@ -68,7 +69,11 @@ export const GET = async (req) => {
             return NextResponse.json({ error: 'Missing Season/Episode parameters for TV type.' }, { status: 400 })
         }
 
-        // fetch stream sources and TMDB info in parallel
+        if (!Meta) {
+            const result = await utill(Tmdb_Id, Type, Season, Episode, Server);
+            return NextResponse.json(result)
+        }
+
         const [result, tmdb] = await Promise.all([
             utill(Tmdb_Id, Type, Season, Episode, Server),
             fetchTMDB(Tmdb_Id, Type, Season, Episode)
