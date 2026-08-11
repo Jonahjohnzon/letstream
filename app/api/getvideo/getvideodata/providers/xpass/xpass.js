@@ -3,11 +3,6 @@ import {getCurrentWorker} from '../proxy';
 const BASE_URL = 'https://play.xpass.top';
 
 
-function proxyUrl(url) {
-      const worker = "https://nodejs-production-ed8d.up.railway.app"
-      return `${worker}/proxy?path=${encodeURIComponent(url)}&origin=${encodeURIComponent(BASE_URL)}&referer=${encodeURIComponent(BASE_URL + "/")}`
-    }
-
 const headers = {
   'User-Agent':
     'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/150 Safari/537.36',
@@ -90,7 +85,10 @@ function detectType(url) {
   return "hls";
 }
 
-
+function proxyUrl(url) {
+      const worker = "https://nodejs-production-ed8d.up.railway.app"
+      return `${worker}/proxy?path=${encodeURIComponent(url)}&origin=${encodeURIComponent(BASE_URL)}&referer=${encodeURIComponent(BASE_URL + "/")}`
+    }
 
 const getSources = async (media) =>{
     try{
@@ -109,24 +107,24 @@ const getSources = async (media) =>{
   const url = stream.file;
   
   sourcesArr.push({
-    url: url,
+    url:  url,
     type: detectType(url),
     quality: "auto",
-    label:  "Dove",
+    label: stream.label || "Unknown",
     audioTracks: [
       {
         language: "eng",
-        label: "Dove",
+        label: "Unknown",
       },
     ],
     provider: {
-      id: "Dove",
-      name: "Dove",
+      id: "dove",
+      name: "dove",
     },
   });
 });
 
-console.log(sourcesArr)
+
 
 return { sources: sourcesArr, subtitles: [], diagnostics: [] };
     }
@@ -134,7 +132,7 @@ return { sources: sourcesArr, subtitles: [], diagnostics: [] };
         console.log(err)
           return { sources: [], subtitles: [], diagnostics: [  {
                 code: 'PROVIDER_ERROR',
-                message: `Dove: Failed to fetch page`,
+                message: `dove: Failed to fetch page`,
                 field: '',
                 severity: 'error'
             }] };
