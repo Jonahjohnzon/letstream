@@ -44,10 +44,6 @@ function collapseToSingleUrl(sources) {
   return Array.from(map.values());
 }
 
-function proxyUrl(url) {
-  const worker = getCurrentWorker();
-  return `${worker}/proxy?path=${encodeURIComponent(url)}`;
-}
 const HEADERS = {
     'User-Agent':
         'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/150 Safari/537.36',
@@ -84,15 +80,15 @@ async function getSources(media) {
 
                 secondData.forEach((obj) => {
                     sources.push({
-                        url: proxyUrl(obj.url),
+                        url: obj.url,
                         type: obj.url.includes('.mp4') ? 'mp4' : 'hls',
                         quality: obj.resolution + 'p',
-                        label: name,
+                        label: "Viper",
                         audioTracks: [{
                             language: stream.language === 'English' ? 'eng' : 'unknown',
                             label: stream.language ?? 'Unknown'
                         }],
-                        provider: { id: vidRockProvider.id, name: vidRockProvider.name }
+                        provider: { id: "Viper", name: "Viper" }
                     });
                 });
 
@@ -100,17 +96,15 @@ async function getSources(media) {
             }
             
             sources.push({
-                url: stream.type === 'hls'
-            ? proxyUrl(stream.url) // 👈 proxy hls
-            : stream.url,
+                url: stream.url,
                 type: stream.type,
                 quality: 'auto',
-                label: name,
+                label: "Viper",
                 audioTracks: [{
                     language: stream.language === 'English' ? 'eng' : 'unknown',
                     label: stream.language ?? 'Unknown'
                 }],
-                provider: { id: vidRockProvider.id, name: vidRockProvider.name }
+                provider: { id: "Viper", name: "Viper" }
             });
         }
 
@@ -146,7 +140,7 @@ async function fetchSubtitles(media) {
         const subsData = await response.json();
 
         return subsData.map((sub) => ({
-            url: proxyUrl(sub.file),
+            url: sub.file,
             format: 'vtt',
             label: sub.label
         }));
@@ -195,7 +189,7 @@ function emptyResult(message) {
         diagnostics: [
             {
                 code: 'PROVIDER_ERROR',
-                message: `VidRock: ${message}`,
+                message: `Viper: ${message}`,
                 field: '',
                 severity: 'error'
             }

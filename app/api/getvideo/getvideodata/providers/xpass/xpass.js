@@ -107,16 +107,16 @@ const getSources = async (media) =>{
     url: url,
     type: detectType(url),
     quality: "auto",
-    label: stream.label || "Unknown",
+    label:  "Dove",
     audioTracks: [
       {
         language: "eng",
-        label: "Unknown",
+        label: "Dove",
       },
     ],
     provider: {
-      id: "xpass",
-      name: "xpass",
+      id: "Dove",
+      name: "Dove",
     },
   });
 });
@@ -129,7 +129,7 @@ return { sources: sourcesArr, subtitles: [], diagnostics: [] };
         console.log(err)
           return { sources: [], subtitles: [], diagnostics: [  {
                 code: 'PROVIDER_ERROR',
-                message: `Icefy: Failed to fetch page`,
+                message: `Dove: Failed to fetch page`,
                 field: '',
                 severity: 'error'
             }] };

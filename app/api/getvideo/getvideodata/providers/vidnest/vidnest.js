@@ -52,9 +52,9 @@ async function fetchVidnest(url) {
     
     if (!res.ok) {
         if (res.status === 404) {
-            throw new Error("VidNest: Resource not found (Invalid ID or missing content)");
+            throw new Error("Spider: Resource not found (Invalid ID or missing content)");
         }
-        throw new Error(`VidNest Upstream Error: ${res.status}`);
+        throw new Error(`Spider Upstream Error: ${res.status}`);
     }
 
     const raw = await res.text();
@@ -63,13 +63,13 @@ async function fetchVidnest(url) {
     try {
         payload = JSON.parse(raw);
     } catch {
-        throw new Error("VidNest returned non-JSON response");
+        throw new Error("Spider returned non-JSON response");
     }
 
     if (payload.encrypted) {
         const encData = payload.data;
         if (typeof encData !== "string") {
-            throw new Error("VidNest: Missing encrypted data field");
+            throw new Error("Spider: Missing encrypted data field");
         }
         const decryptedStr = decodeVidnest(encData);
         try {
@@ -100,12 +100,12 @@ export async function VidNestProvider({ Tmdb_Id, Type, Season, Episode }) {
             url: data?.url || data?.source || "",
             type: "hls",
             quality: "auto",
-            label: "Ghost",
+            label: "Spider",
             audioTracks: [{
                 language: "eng",
                 label: "english"
             }],
-            provider: { id: "Ghost", name: "Ghost" }
+            provider: { id: "Spider", name: "Spider" }
         });
 
         const sub = await getVidNestSubtitles({Tmdb_Id, Type, Season, Episode})
@@ -118,7 +118,7 @@ export async function VidNestProvider({ Tmdb_Id, Type, Season, Episode }) {
             subtitles: [],
             diagnostics: [{
                 code: "PROVIDER_ERROR",
-                message: `VidNest: ${err.message || "Failed to fetch page"}`,
+                message: `Spider: ${err.message || "Failed to fetch page"}`,
                 field: "",
                 severity: "error"
             }]
@@ -144,12 +144,12 @@ async function getVidNestAnime({ anilistId, episode = "1", type = "sub", provide
             url: data?.url || data?.source || "",
             type: "hls",
             quality: "auto",
-            label: "VidNest",
+            label: "Spider",
             audioTracks: [{
                 language: type === "dub" ? "eng" : "jpn",
                 label: type === "dub" ? "english" : "japanese"
             }],
-            provider: { id: "vidnest", name: "VidNest" }
+            provider: { id: "spider", name: "Spider" }
         });
 
         return { sources, subtitles: [], diagnostics: [] };
@@ -159,7 +159,7 @@ async function getVidNestAnime({ anilistId, episode = "1", type = "sub", provide
             subtitles: [],
             diagnostics: [{
                 code: "PROVIDER_ERROR",
-                message: `VidNest: ${err.message || "Failed to fetch page"}`,
+                message: `Spider: ${err.message || "Failed to fetch page"}`,
                 field: "",
                 severity: "error"
             }]

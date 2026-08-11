@@ -20,25 +20,10 @@ const buildUrl = (media) =>{
 }
 
 
-const getType = (url) => {
-  if (url.includes(".srt")) return "subtitle";
-  if (url.includes(".mp4")) return "video";
-  return "unknown";
-};
 
-const getFinalLinks = async (url) => {
-  const res = await fetch(url, { headers: HEADERS });
-  const text = await res.text();
 
-  return text;
-};
 
-const extractMediaLinks = (text) => {
-  const mp4 = [...text.matchAll(/https?:\/\/[^"' ]+\.mp4[^"' ]*/g)].map(m => m[0]);
-  const srt = [...text.matchAll(/https?:\/\/[^"' ]+\.srt[^"' ]*/g)].map(m => m[0]);
 
-  return { mp4, srt };
-};
 
 
 
@@ -89,7 +74,7 @@ const getSource = async  (media) =>{
     const html = await res.text()
     const matches =
   html.match(/https:\/\/trendimovies\.com\/tgstream\/stream[^\s"'<>]+/g) || [];
-   const trendiProvider = { id: 'trendi', name: 'TrendiMovies' };
+
 
 const { sources: parsed, subtitleUrl } = parseTrendiSources(matches);
 
@@ -99,7 +84,7 @@ const sources = parsed.map(s => ({
   quality: s.quality,   // "720p", "2160p", "hdrip" etc.
   label:   s.size ? `${s.quality} · ${s.size}` : s.quality,
   audioTracks: [{ language: 'eng', label: 'English' }],
-  provider: { id: trendiProvider.id, name: trendiProvider.name },
+  provider: { id: "Eagle", name: "Eagle" },
 }));
 
 const subtitles = subtitleUrl

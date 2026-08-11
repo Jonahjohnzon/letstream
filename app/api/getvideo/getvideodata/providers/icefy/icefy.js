@@ -51,12 +51,12 @@ const getSource = async (media) => {
     if (!data) {
         return { sources: [], subtitles: [], diagnostics: [  {
                 code: 'PROVIDER_ERROR',
-                message: `Icefy: Failed to fetch page`,
+                message: `Lion: Failed to fetch page`,
                 field: '',
                 severity: 'error'
             }] };
     }
-    const proxy = proxyUrl(data)
+    const proxy =data
     
     const sources = [];
 
@@ -64,12 +64,12 @@ const getSource = async (media) => {
                 url: proxy,
                 type: "hls",
                 quality: 'auto',
-                label: 'Icefy',
+                label: 'Lion',
                 audioTracks: [{
                     language:  'eng',
                     label: 'english'
                 }],
-                provider: { id: "icefy", name: "icefy" }
+                provider: { id: "Lion", name: "Lion" }
             });
     return { sources, subtitles: [], diagnostics: [] };
         }
@@ -77,7 +77,7 @@ const getSource = async (media) => {
               
         return { sources: [], subtitles: [], diagnostics: [  {
                 code: 'PROVIDER_ERROR',
-                message: `Icefy: Failed to fetch page`,
+                message: `Lion: Failed to fetch page`,
                 field: '',
                 severity: 'error'
             }] };
