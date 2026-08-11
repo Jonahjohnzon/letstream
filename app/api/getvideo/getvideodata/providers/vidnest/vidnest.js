@@ -97,7 +97,7 @@ export async function VidNestProvider({ Tmdb_Id, Type, Season, Episode }) {
 
         // TODO: map `data` fields into actual stream entries
         sources.push({
-            url: data?.url || data?.source || "",
+            url:  data.streams[0]?.url || data?.source || "",
             type: "hls",
             quality: "auto",
             label: "Spider",
