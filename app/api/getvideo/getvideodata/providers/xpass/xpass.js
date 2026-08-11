@@ -109,7 +109,7 @@ const getSources = async (media) =>{
   const url = stream.file;
   
   sourcesArr.push({
-    url: stream.type === "hls" ? proxyUrl(url) : url,
+    url: url,
     type: detectType(url),
     quality: "auto",
     label:  "Dove",
