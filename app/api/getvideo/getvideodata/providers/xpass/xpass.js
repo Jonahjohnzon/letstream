@@ -3,6 +3,11 @@ import {getCurrentWorker} from '../proxy';
 const BASE_URL = 'https://play.xpass.top';
 
 
+function proxyUrl(url) {
+      const worker = "https://nodejs-production-ed8d.up.railway.app"
+      return `${worker}/proxy?path=${encodeURIComponent(url)}&origin=${encodeURIComponent(BASE_URL)}&referer=${encodeURIComponent(BASE_URL + "/")}`
+    }
+
 const headers = {
   'User-Agent':
     'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/150 Safari/537.36',
@@ -104,7 +109,7 @@ const getSources = async (media) =>{
   const url = stream.file;
   
   sourcesArr.push({
-    url: url,
+    url: stream.type === "hls" ? proxyUrl(url) : url,
     type: detectType(url),
     quality: "auto",
     label:  "Dove",
