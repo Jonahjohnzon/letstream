@@ -6,17 +6,14 @@ export default function RootLayout({ children }) {
     <html lang="en">
       <body>
         {children}
+        <link rel="preconnect" href="https://quge5.com" />
+        <link rel="dns-prefetch" href="https://quge5.com" />
         <Script
-          id="monetag-vignette"
+          id="monetag-tag"
+          src="https://quge5.com/88/tag.min.js"
+          data-zone="269577"
           strategy="afterInteractive"
-          dangerouslySetInnerHTML={{
-            __html: `
-              (function(s){
-                s.dataset.zone='11562434';
-                s.src='https://n6wxm.com/vignette.min.js';
-              })([document.documentElement, document.body].filter(Boolean).pop().appendChild(document.createElement('script')))
-            `,
-          }}
+          data-cfasync="false"
         />
       </body>
     </html>
