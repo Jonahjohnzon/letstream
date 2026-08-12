@@ -11,6 +11,7 @@ import Navbar from "./Navbar";
 import Recent from "./Recent";
 import ReactGA from 'react-ga4'
 import Popup from "./Popup";
+import AndroidPopup from "./Component/AndroidPopup";
 
 // Every homepage row lives here, in the order it renders. Adding a new
 // category is a one-line addition to this array — nothing else in the
@@ -132,6 +133,7 @@ export default function Home() {
   return (
     <div className="w-[100vw] relative">
       <Popup words={"USE ADS-BLOCK FOR EASE OF USE"} />
+      <AndroidPopup />
       <Navbar />
       <Top BackgroundList={heroList} />
 

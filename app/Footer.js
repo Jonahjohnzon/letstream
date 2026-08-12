@@ -23,13 +23,22 @@ const Footer = () => {
             <h1 className="text-3xl font-bold">Screenopps</h1>
           </button>
 
-          <div>
-            <h3 className="font-semibold text-lg sm:text-2xl mb-2">Socials</h3>
-            {/* No socials live yet — add links here as they go up. */}
+          <div className=" mb-8 sm:mb-0">
+            <h3 className="font-semibold text-lg sm:text-2xl mb-1 sm:mb-2">Get the App</h3>
+            {/* router.push, not an <a> — /android-app is an internal
+                route, not an external URL, so this stays consistent with
+                the "internal routes use router.push" rule below. */}
+            <button
+              type="button"
+              onClick={() => router.push('/android-app')}
+              className="block font-medium sm:text-base text-sm cursor-pointer hover:font-semibold hover:underline text-left"
+            >
+              Android (APK)
+            </button>
           </div>
 
           <div>
-            <h3 className="font-semibold text-lg sm:text-2xl mb-2">Resource</h3>
+            <h3 className="font-semibold text-lg sm:text-2xl mb-1 sm:mb-2">Resource</h3>
             {/* A real <a> tag, not router.push() — router.push is for
                 internal routes and won't reliably navigate to an external
                 URL like Discord. This also restores normal browser
