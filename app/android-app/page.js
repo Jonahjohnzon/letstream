@@ -2,7 +2,7 @@
 import { useState } from "react";
 import Link from "next/link";
 
-const APK_URL = "https://mega.nz/file/2shRCCwL#l79-HHArB3o3VqxAo-ywIcNN8K1DXTQVhvmMpoDgJLs";
+const APK_URL = "https://github.com/screenopps/screenopps/releases/download/download/screenopps.apk";
 
 const FEATURES = [
   {
@@ -26,7 +26,7 @@ const STEPS = [
   },
   {
     title: "Download the APK",
-    body: "Tap the button below. The file opens on Mega — tap the download icon there to save it to your device.",
+    body: "Tap the button below to start the download directly.",
   },
   {
     title: "Open and install",
@@ -82,11 +82,9 @@ export default function AndroidAppPage() {
           <p className="mt-4 text-[#a8a8b3] max-w-md mx-auto text-base sm:text-lg">
             Download the Android app directly — no Play Store required.
           </p>
-
           <a
+          
             href={APK_URL}
-            target="_blank"
-            rel="noopener noreferrer"
             className="mt-8 inline-flex items-center gap-2 rounded-lg bg-[#F5C242] px-8 py-3.5 text-base sm:text-lg font-bold text-[#141414] tracking-wide hover:bg-[#ffd668] transition-colors"
           >
             Download APK
@@ -96,7 +94,7 @@ export default function AndroidAppPage() {
           </a>
 
           <div className="mt-3 flex items-center justify-center gap-2">
-            <span className="text-xs text-[#6b6b76]">Hosted on Mega</span>
+            <span className="text-xs text-[#6b6b76]">Direct download</span>
             <span className="text-[#3a3a44]">·</span>
             <button
               onClick={copyLink}
