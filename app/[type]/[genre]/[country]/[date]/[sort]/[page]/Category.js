@@ -7,6 +7,7 @@ import Footer from '@/app/Footer'
 import Pagination from './Component/Pagination'
 import { sortOptions } from './Genres'
 import { useRouter } from 'nextjs-toploader/app';
+import MonetagAd from '@/app/Component/MonetagAd';
 
 const TMDB_MAX_PAGE = 500; // TMDB hard-caps discover results at page 500.
 
@@ -98,6 +99,7 @@ const Category = ({ params, searchParams }) => {
 
   return (
     <div className="w-[100vw] pt-24 sm:pt-32 font-semibold relative z-20 min-h-[100vh] flex flex-col items-center justify-center">
+      <MonetagAd />
       <div className="w-[90%] 2xl:w-2/3 mb-10">
         <div className="mb-5"><InputBox params={params} searchParams={searchParams} /></div>
 
