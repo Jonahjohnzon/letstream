@@ -82,8 +82,8 @@ const Stream = ({ id, type, season, eps }) => {
   const StreamApi = [
     {
       Name: "SERVER",
-      scrMovie: `https://player.cinezo.live/embed/movie/${id}?autoplay=false&poster=true&chromecast=false&servericon=true&setting=false&pip=true&font=Roboto&fontcolor=6f63ff&fontsize=20&opacity=0.5&primarycolor=e8b86d&secondarycolor=0a0a12&iconcolor=ffffff`,
-      scrSeries: `https://player.cinezo.live/embed/tv/${id}/${season}/${eps}?autoplay=false&poster=true&chromecast=false&servericon=true&setting=false&pip=true&font=Roboto&fontcolor=6f63ff&fontsize=20&opacity=0.5&primarycolor=e8b86d&secondarycolor=0a0a12&iconcolor=ffffff`,
+      scrMovie: `https://player.videasy.net/movie//${id}`,
+      scrSeries: `https://player.videasy.net/tv/${id}/${season}/${eps}`,
       id: 0,
     },
     {
@@ -103,6 +103,12 @@ const Stream = ({ id, type, season, eps }) => {
       scrMovie: `https://vidlink.pro/movie/${id}`,
       scrSeries: `https://vidlink.pro/tv/${id}/${season}/${eps}`,
       id: 3,
+    },
+       {
+      Name: "SERVER 4",
+      scrMovie: `https://player.cinezo.live/embed/movie/${id}?autoplay=false&poster=true&chromecast=false&servericon=true&setting=false&pip=true&font=Roboto&fontcolor=6f63ff&fontsize=20&opacity=0.5&primarycolor=e8b86d&secondarycolor=0a0a12&iconcolor=ffffff`,
+      scrSeries: `https://player.cinezo.live/embed/tv/${id}/${season}/${eps}?autoplay=false&poster=true&chromecast=false&servericon=true&setting=false&pip=true&font=Roboto&fontcolor=6f63ff&fontsize=20&opacity=0.5&primarycolor=e8b86d&secondarycolor=0a0a12&iconcolor=ffffff`,
+      id: 4,
     },
   ];
 
