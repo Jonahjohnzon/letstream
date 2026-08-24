@@ -2,7 +2,7 @@
 import { useState } from "react";
 import Link from "next/link";
 
-const APK_URL = "https://github.com/screenopps/screenopps/releases/download/download/Screenopps.apk";
+const APK_URL = "https://files.catbox.moe/jv7nkm.apk";
 
 const FEATURES = [
   {
