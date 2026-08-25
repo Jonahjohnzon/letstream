@@ -27,6 +27,30 @@ const ROWS = [
     heroSource: true,
   },
   {
+    key: 'netflix',
+    title: 'Netflix',
+    type: 'movie',
+    endpoint: '/3/discover/movie?include_adult=false&language=en-US&page=1&sort_by=popularity.desc&with_watch_providers=8&watch_region=US',
+  },
+  {
+    key: 'prime',
+    title: 'Prime Video',
+    type: 'movie',
+    endpoint: '/3/discover/movie?include_adult=false&language=en-US&page=1&sort_by=popularity.desc&with_watch_providers=119&watch_region=US',
+  },
+  {
+    key: 'disneyPlus',
+    title: 'Disney+',
+    type: 'movie',
+    endpoint: '/3/discover/movie?include_adult=false&language=en-US&page=1&sort_by=popularity.desc&with_watch_providers=337&watch_region=US',
+  },
+  {
+    key: 'appleTv',
+    title: 'Apple TV+',
+    type: 'movie',
+    endpoint: '/3/discover/movie?include_adult=false&language=en-US&page=1&sort_by=popularity.desc&with_watch_providers=350&watch_region=US',
+  },
+  {
     key: 'series',
     title: 'Series Today',
     type: 'tv',
