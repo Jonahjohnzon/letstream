@@ -36,7 +36,7 @@ const ROWS = [
     key: 'prime',
     title: 'Prime Video',
     type: 'movie',
-    endpoint: '/3/discover/movie?include_adult=false&language=en-US&page=1&sort_by=popularity.desc&with_watch_providers=119&watch_region=US',
+    endpoint: '/3/discover/movie?include_adult=false&language=en-US&page=1&sort_by=popularity.desc&with_watch_providers=9|119&watch_region=US',
   },
   {
     key: 'disneyPlus',
