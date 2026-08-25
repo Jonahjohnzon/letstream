@@ -98,7 +98,7 @@ const Bodyjs = ({ params }) => {
   const addDefaultImg = (ev) => { ev.target.src = "/dfi.png" }
 
   const goStream = () => {
-    window.open("https://omg10.com/4/10438662")
+    window.open("https://omg10.com/4/11569591")
     router.push(`/stream/${type}/${id}/1/1`)
   }
 

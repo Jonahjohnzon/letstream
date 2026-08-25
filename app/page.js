@@ -135,7 +135,7 @@ export default function Home() {
     <div className="w-[100vw] relative">
       <Popup words={"USE ADS-BLOCK FOR EASE OF USE"} />
       <AndroidPopup />
-      <MonetagAd />
+      {/* <MonetagAd /> */}
       <Navbar />
       <Top BackgroundList={heroList} />
 

@@ -74,7 +74,7 @@ const Top = ({ BackgroundList }) => {
                   type="button"
                   className="md:mr-10 mb-5 md:mb-0 cursor-pointer"
                   onClick={() => {
-                    window.open("https://omg10.com/4/10438662")
+                    window.open("https://omg10.com/4/11569591")
                     router.push(`/stream/movie/${current?.id}/1/1`)
                   }}
                 >
@@ -93,20 +93,6 @@ const Top = ({ BackgroundList }) => {
         </motion.div>
       </AnimatePresence>
 
-      {/* {BackgroundList.length > 1 && (
-        <div className="absolute z-20 bottom-6 left-1/2 -translate-x-1/2 flex gap-2">
-          {BackgroundList.map((item, i) => (
-            <button
-              key={item.id ?? i}
-              type="button"
-              aria-label={`Show slide ${i + 1}`}
-              aria-current={i === currentIndex}
-              onClick={() => setCurrentIndex(i)}
-              className={`h-1.5 rounded-full transition-all duration-300 ${i === currentIndex ? 'w-6 bg-white' : 'w-1.5 bg-white/40'}`}
-            />
-          ))}
-        </div>
-      )} */}
 
       <div className="absolute w-full h-full top-0 bg-gradient-to-b from-[rgba(0,0,0,0.4)] to-[rgba(0,0,0,1)]"></div>
     </div>

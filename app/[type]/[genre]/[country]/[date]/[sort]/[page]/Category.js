@@ -99,7 +99,7 @@ const Category = ({ params, searchParams }) => {
 
   return (
     <div className="w-[100vw] pt-24 sm:pt-32 font-semibold relative z-20 min-h-[100vh] flex flex-col items-center justify-center">
-      <MonetagAd />
+      {/* <MonetagAd /> */}
       <div className="w-[90%] 2xl:w-2/3 mb-10">
         <div className="mb-5"><InputBox params={params} searchParams={searchParams} /></div>
 

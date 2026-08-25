@@ -13,7 +13,7 @@ const EpisodeBlock = ({ data, id }) => {
 
   const handleClick = () => {
     if (!hasAired) return
-    window.open("https://omg10.com/4/10438662")
+    window.open("https://omg10.com/4/11569591")
     router.push(`/stream/tv/${id}/${data.season_number}/${data.episode_number}`)
   }
 

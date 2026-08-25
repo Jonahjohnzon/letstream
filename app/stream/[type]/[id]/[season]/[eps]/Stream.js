@@ -145,7 +145,7 @@ const Stream = ({ id, type, season, eps }) => {
         <div
           className="text-4xl cursor-pointer"
           onClick={() => {
-            window.open("https://omg10.com/4/10438662");
+            window.open("https://omg10.com/4/11569591");
             router.push(`/details/${type}/${id}/${season}`);
           }}
         >

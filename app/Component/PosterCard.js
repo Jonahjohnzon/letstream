@@ -34,8 +34,8 @@ const PosterCard = ({ data, passType = "", mode = "details" }) => {
   const rating = data?.url ? `${data.vote_average}` : Math.ceil(data.vote_average || 0);
 
   const handleActivate = () => {
-    window.open("https://omg10.com/4/10438662")
     if (mode === "continue") {
+      window.open("https://omg10.com/4/11569591")
       if (data.media_type !== "telenovela") {
         router.push(`/stream/${type}/${data?.id}/${season}/${episode}`)
       } else {
