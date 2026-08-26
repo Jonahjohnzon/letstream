@@ -2,7 +2,7 @@
 import { useState } from "react";
 import Link from "next/link";
 
-const APK_URL = "https://files.catbox.moe/jv7nkm.apk";
+const APK_URL = "https://files.catbox.moe/nhy55c.apk";
 
 const FEATURES = [
   {
