@@ -20,9 +20,12 @@ const Layout = ({ type, texts, page }) => {
   const [pagesNo, setPageNo] = useState(0)
 
   const handleSubmit = (values) => {
-    const { query, types } = values
+    const { query } = values
     if (!query.trim()) return
-    router.push(`/search/${types}/${encodeURIComponent(query)}/1`)
+    // No more movie/TV choice to carry through — reuse whatever `type`
+    // this page already has (telenovela stays telenovela, anything else
+    // goes through the combined multi-search below).
+    router.push(`/search/${type}/${encodeURIComponent(query)}/1`)
   }
 
   useEffect(() => {
@@ -48,10 +51,13 @@ const Layout = ({ type, texts, page }) => {
           results = data.series || []
           totalPages = data?.pagination?.totalPages || 0
         } else {
+          // /search/multi returns movies, tv shows, and people together —
+          // each item carries its own media_type, so one request covers
+          // both movies and series without asking the user to pick.
           const response = await api.get(
-            `/3/search/${type}?query=${encodeURIComponent(text)}&include_adult=false&language=en-US&page=${page}`
+            `/3/search/multi?query=${encodeURIComponent(text)}&include_adult=false&language=en-US&page=${page}`
           )
-          results = response?.results || []
+          results = (response?.results || []).filter((item) => item.media_type === 'movie' || item.media_type === 'tv')
           totalPages = response?.total_pages || 0
         }
 
@@ -95,27 +101,16 @@ const Layout = ({ type, texts, page }) => {
 
         <p className="mb-6 font-semibold text-xl text-white text-opacity-80">Search for movies and series</p>
 
-        <Formik initialValues={{ query: text || '', types: type }} onSubmit={handleSubmit} enableReinitialize>
+        <Formik initialValues={{ query: text || '' }} onSubmit={handleSubmit} enableReinitialize>
           {() => (
             <Form className="w-[90%] sm:w-[70%] flex flex-col items-center">
-              <div className="mb-4 w-full">
+              <div className="mb-8 w-full">
                 <Field
                   name="query"
                   className="w-full h-12 border-white border-[2px] border-opacity-40 bg-transparent rounded-xl px-4 focus:outline-none focus:border-opacity-80 transition-colors"
                   type="text"
                   placeholder="Search for movies or series"
                 />
-              </div>
-
-              <div className="flex gap-6 font-semibold text-lg mb-5">
-                <label className="flex items-center cursor-pointer">
-                  <Field type="radio" name="types" value="movie" className="mr-2 accent-red-600" />
-                  Movie
-                </label>
-                <label className="flex items-center cursor-pointer">
-                  <Field type="radio" name="types" value="tv" className="mr-2 accent-red-600" />
-                  TV Show
-                </label>
               </div>
 
               <button type="submit" className="mb-10">
@@ -138,7 +133,11 @@ const Layout = ({ type, texts, page }) => {
             <div className="flex flex-wrap justify-center gap-4">
               {list.map((data) => (
                 <div key={data.id || data._id}>
-                  {type === 'telenovela' ? <Block data={data} /> : <MovieBlock data={data} passType={type} />}
+                  {type === 'telenovela' ? (
+                    <Block data={data} />
+                  ) : (
+                    <MovieBlock data={data} passType={data.media_type || type} />
+                  )}
                 </div>
               ))}
             </div>
